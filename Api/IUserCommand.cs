@@ -1,9 +1,11 @@
-﻿namespace Api
+﻿using System.Threading.Tasks;
+
+namespace Api
 {
     public interface IUserCommand
     {
         string Description { get; }
         char Key { get; }
-        void Execute();
+        Task ExecuteAsync();
     }
 }

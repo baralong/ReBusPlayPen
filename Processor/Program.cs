@@ -1,11 +1,8 @@
 ﻿using Autofac;
+using Common;
 using Rebus.Config;
 using Serilog;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Processor
 {
@@ -17,7 +14,7 @@ namespace Processor
             builder.RegisterRebus((config, context) =>
                 config
                     .Logging(l => l.Serilog(new LoggerConfiguration().WriteTo.Console()))
-                    .Transport(t => t.UseSqlServer("server=.; initial catalog=rebus; integrated security=true", "Processor"))
+                    .Transport(t => t.UseSqlServer(Constants.ConnectionString, "Processor"))
                     .Options(o =>
                     {
                         o.SetNumberOfWorkers(2);

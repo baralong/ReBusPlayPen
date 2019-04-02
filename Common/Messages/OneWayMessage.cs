@@ -1,4 +1,4 @@
-﻿namespace Messages
+﻿namespace Common.Messages
 {
     public class OneWayMessage
     {

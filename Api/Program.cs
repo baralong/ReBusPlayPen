@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Common;
 using Rebus.Config;
 using Serilog;
 using System;
@@ -15,7 +16,7 @@ namespace Api
             builder.RegisterRebus((config, context) =>
                 config
                     .Logging(l => l.Serilog(new LoggerConfiguration().WriteTo.Console()))
-                    .Transport(t => t.UseSqlServer("server=.; initial catalog=rebus; integrated security=true", "Api"))
+                    .Transport(t => t.UseSqlServer(Constants.ConnectionString, "Api"))
                     .Options(o =>
                     {
                         o.SetNumberOfWorkers(2);
@@ -32,16 +33,18 @@ namespace Api
                     .OrderBy(uc => uc.Key)
                     .ToDictionary(uc => uc.Key);
                 var prompt = string.Join("\n", commands
-                        .Select(pair => $"{pair.Key}) {pair.Value.Description}"));
+                        .Select(pair => $"{pair.Key}) {pair.Value.Description}"))
+                        + "\nq) to quit";
 
                 while(true)
                 {
                     Console.WriteLine(prompt);
                     var key = char.ToLower(Console.ReadKey().KeyChar);
                     if (key == 'q') return;
+                    Console.WriteLine();
                     if (commands.TryGetValue(key, out IUserCommand cmd))
                     {
-                        cmd.Execute();
+                        cmd.ExecuteAsync();
                     }
                     else
                     {

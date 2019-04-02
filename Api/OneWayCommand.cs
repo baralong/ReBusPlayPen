@@ -1,9 +1,6 @@
-﻿using Messages;
+﻿using Common.Messages;
 using Rebus.Bus;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api
@@ -20,11 +17,11 @@ namespace Api
 
         public char Key => 'a';
 
-        public void Execute()
+        public async Task ExecuteAsync()
         {
             Console.WriteLine("Enter the content of the message to send:");
             var content = Console.ReadLine();
-            bus.Send(new OneWayMessage { Content = content });
+            await bus.Send(new OneWayMessage { Content = content });
         }
     }
 }
