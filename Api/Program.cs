@@ -39,18 +39,23 @@ namespace Api
             using (var container = builder.Build())
             {
                 var commands = container.Resolve<IUserCommand[]>()
-                    .OrderBy(uc => uc.Key)
-                    .ToDictionary(uc => uc.Key);
-                var prompt = string.Join("\n", commands
+                    .Select((command, i) => new {command, key = (char)(i + 'a') })
+                    .ToDictionary(tmp => tmp.key, tmp => tmp.command);
+
+                var prompt = "\nSelect a command\n" + 
+                    string.Join("\n", commands
                         .Select(pair => $"{pair.Key}) {pair.Value.Description}"))
                         + "\nq) to quit";
 
                 while(true)
                 {
                     Console.WriteLine(prompt);
+                    Console.Write("> ");
+
                     var key = char.ToLower(Console.ReadKey().KeyChar);
-                    if (key == 'q') return;
                     Console.WriteLine();
+
+                    if (key == 'q') return;
                     if (commands.TryGetValue(key, out IUserCommand cmd))
                     {
                         cmd.ExecuteAsync().Wait();

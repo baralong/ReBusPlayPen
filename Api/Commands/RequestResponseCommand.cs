@@ -18,8 +18,6 @@ namespace Api.Commands
         }
         public string Description => "Request a response";
 
-        public char Key => 's';
-
         public async Task ExecuteAsync()
         {
             Console.WriteLine("Enter the content of the message to send:");

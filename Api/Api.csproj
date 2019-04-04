@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\PublishCommand.cs" />
     <Compile Include="Commands\RequestResponseCommand.cs" />
     <Compile Include="IUserCommand.cs" />
     <Compile Include="Commands\OneWayCommand.cs" />
