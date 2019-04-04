@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Messages\OneWayMessage.cs" />
+    <Compile Include="Messages\RequestMessage.cs" />
+    <Compile Include="Messages\ResponseMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

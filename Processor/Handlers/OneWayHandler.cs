@@ -3,9 +3,9 @@ using Common.Messages;
 using Rebus.Handlers;
 using Serilog;
 
-namespace Processor
+namespace Processor.Handlers
 {
-    class OneWayHandler : IHandleMessages<OneWayMessage>
+    public class OneWayHandler : IHandleMessages<OneWayMessage>
     {
         static readonly ILogger Logger = Log.ForContext<OneWayHandler>();
  

@@ -29,6 +29,7 @@ namespace Api
                     {
                         o.SetNumberOfWorkers(2);
                         o.SetMaxParallelism(30);
+                        o.EnableSynchronousRequestReply();
                     }));
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())

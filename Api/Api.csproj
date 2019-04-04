@@ -42,6 +42,9 @@
     <Reference Include="Rebus, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Rebus.5.3.0\lib\net46\Rebus.dll</HintPath>
     </Reference>
+    <Reference Include="Rebus.Async, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rebus.Async.5.0.0\lib\net45\Rebus.Async.dll</HintPath>
+    </Reference>
     <Reference Include="Rebus.Autofac, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Rebus.Autofac.5.2.0\lib\net45\Rebus.Autofac.dll</HintPath>
     </Reference>
@@ -69,8 +72,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\RequestResponseCommand.cs" />
     <Compile Include="IUserCommand.cs" />
-    <Compile Include="OneWayCommand.cs" />
+    <Compile Include="Commands\OneWayCommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

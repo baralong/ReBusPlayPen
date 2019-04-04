@@ -4,9 +4,9 @@ using Serilog;
 using System;
 using System.Threading.Tasks;
 
-namespace Api
+namespace Api.Commands
 {
-    class OneWayCommand : IUserCommand
+    public class OneWayCommand : IUserCommand
     {
         static readonly ILogger Logger = Log.ForContext<OneWayCommand>();
         private readonly IBus bus;
@@ -23,7 +23,7 @@ namespace Api
         {
             Console.WriteLine("Enter the content of the message to send:");
             var content = Console.ReadLine();
-            OneWayMessage message = new OneWayMessage { Content = content };
+            var message = new OneWayMessage { Content = content };
             await bus.Send(message);
             Logger.Debug("Sent {@message}", message);
         }
