@@ -11,7 +11,7 @@ namespace Processor
  
         public Task Handle(OneWayMessage message)
         {
-            Logger.Debug("OneWayHandler got {message}", message);
+            Logger.Debug("OneWayHandler got {@message}", message);
             return Task.CompletedTask;
         }
     }

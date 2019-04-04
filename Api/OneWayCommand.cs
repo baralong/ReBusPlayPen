@@ -1,5 +1,6 @@
 ﻿using Common.Messages;
 using Rebus.Bus;
+using Serilog;
 using System;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace Api
 {
     class OneWayCommand : IUserCommand
     {
+        static readonly ILogger Logger = Log.ForContext<OneWayCommand>();
         private readonly IBus bus;
 
         public OneWayCommand(IBus bus)
@@ -21,7 +23,9 @@ namespace Api
         {
             Console.WriteLine("Enter the content of the message to send:");
             var content = Console.ReadLine();
-            await bus.Send(new OneWayMessage { Content = content });
+            OneWayMessage message = new OneWayMessage { Content = content };
+            await bus.Send(message);
+            Logger.Debug("Sent {@message}", message);
         }
     }
 }

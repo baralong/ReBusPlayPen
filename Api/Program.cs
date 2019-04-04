@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Common;
+using Common.Messages;
 using Rebus.Config;
+using Rebus.Routing.TypeBased;
 using Serilog;
 using System;
 using System.Linq;
@@ -12,11 +14,17 @@ namespace Api
     {
         static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                                    .WriteTo.Console()
+                                    .MinimumLevel.Debug()
+                                    .CreateLogger();
+
             var builder = new ContainerBuilder();
-            builder.RegisterRebus((config, context) =>
-                config
-                    .Logging(l => l.Serilog(new LoggerConfiguration().WriteTo.Console()))
+            builder.RegisterRebus((config, context) => config
+                    .Logging(l => l.Serilog())
                     .Transport(t => t.UseSqlServer(Constants.ConnectionString, "Api"))
+                    .Routing(r => r.TypeBased().MapAssemblyOf<OneWayMessage>("Processor"))
+                    .Subscriptions(s => s.StoreInSqlServer(Constants.ConnectionString, "Subscriptions", true))
                     .Options(o =>
                     {
                         o.SetNumberOfWorkers(2);
@@ -44,7 +52,7 @@ namespace Api
                     Console.WriteLine();
                     if (commands.TryGetValue(key, out IUserCommand cmd))
                     {
-                        cmd.ExecuteAsync();
+                        cmd.ExecuteAsync().Wait();
                     }
                     else
                     {

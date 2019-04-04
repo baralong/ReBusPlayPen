@@ -10,10 +10,15 @@ namespace Processor
     {
         static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                                    .WriteTo.Console()
+                                    .MinimumLevel.Debug()
+                                    .CreateLogger();
+
             var builder = new ContainerBuilder();
-            builder.RegisterRebus((config, context) =>
-                config
-                    .Logging(l => l.Serilog(new LoggerConfiguration().WriteTo.Console()))
+            builder.RegisterRebus((config, context) => config
+                    .Logging(l => l.Serilog())
+                    .Subscriptions(s => s.StoreInSqlServer(Constants.ConnectionString, "Subscriptions", true))
                     .Transport(t => t.UseSqlServer(Constants.ConnectionString, "Processor"))
                     .Options(o =>
                     {
