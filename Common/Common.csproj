@@ -45,6 +45,10 @@
     <Compile Include="Messages\OneWayMessage.cs" />
     <Compile Include="Messages\RequestMessage.cs" />
     <Compile Include="Messages\ResponseMessage.cs" />
+    <Compile Include="Messages\SagaEndMessage.cs" />
+    <Compile Include="Messages\SagaIncrementMessage.cs" />
+    <Compile Include="Messages\SagaStartMessage.cs" />
+    <Compile Include="Messages\SagaStateMessage.cs" />
     <Compile Include="Messages\SubscribedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -74,8 +74,10 @@
   <ItemGroup>
     <Compile Include="Commands\PublishCommand.cs" />
     <Compile Include="Commands\RequestResponseCommand.cs" />
+    <Compile Include="Commands\SagaCommand.cs" />
     <Compile Include="IUserCommand.cs" />
     <Compile Include="Commands\OneWayCommand.cs" />
+    <Compile Include="LogSagaState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

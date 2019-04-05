@@ -9,7 +9,7 @@ namespace Api.Commands
 {
     public class RequestResponseCommand : IUserCommand
     {
-        static readonly ILogger Logger = Log.ForContext<OneWayCommand>();
+        static readonly ILogger Logger = Log.ForContext<RequestResponseCommand>();
         private readonly IBus bus;
 
         public RequestResponseCommand(IBus bus)

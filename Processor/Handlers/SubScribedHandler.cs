@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Common.Messages;
 using Rebus.Bus;
 using Rebus.Handlers;

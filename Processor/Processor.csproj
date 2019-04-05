@@ -70,10 +70,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Handlers\OneWayHandler.cs" />
-    <Compile Include="Handlers\SubScribedHandler.cs" />
+    <Compile Include="Handlers\SubscribedHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Handlers\RequestHandler.cs" />
+    <Compile Include="Saga\SimpleData.cs" />
+    <Compile Include="Saga\SimpleSaga.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

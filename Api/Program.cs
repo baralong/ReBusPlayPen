@@ -32,6 +32,8 @@ namespace Api
                         o.EnableSynchronousRequestReply();
                     }));
 
+            builder.RegisterHandler<LogSagaState>();
+
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                         .Where(t => t.IsAssignableTo<IUserCommand>())
                         .AsImplementedInterfaces();
