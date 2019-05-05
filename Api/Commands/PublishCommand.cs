@@ -1,8 +1,8 @@
 ﻿using Common.IO;
-using Common.Messages;
+using System;
 using Rebus.Bus;
 using Serilog;
-using System;
+using Common.Messages;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,7 +24,7 @@ namespace Api.Commands
         public async Task ExecuteAsync()
         {
             console.WriteLine("Enter the content of the messages to send:");
-            var content = console.ReadLine();
+            string content = console.ReadLine();
             var message = new SubscribedMessage { Content = content };
 
             console.Write("How many?");
@@ -32,7 +32,7 @@ namespace Api.Commands
             while (!int.TryParse(console.ReadKey().KeyChar.ToString(), out max)) { }
             console.WriteLine();
 
-            foreach(var i in Enumerable.Range(0,max))
+            foreach (var i in Enumerable.Range(0, max))
             {
                 message.Id = i;
                 await bus.Publish(message);

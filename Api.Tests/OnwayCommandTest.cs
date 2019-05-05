@@ -4,6 +4,7 @@ using Common.Messages;
 using NSubstitute;
 using NUnit.Framework;
 using Rebus.Bus;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Api.Tests
@@ -19,6 +20,7 @@ namespace Api.Tests
             var bus = Substitute.For<IBus>();
             var command = new OneWayCommand(bus, console);
             await command.ExecuteAsync();
+            var rx = new Regex(@"^\d+[a-z].*($<thing>\w+)$");
             await bus.Received().Send(Arg.Is<OneWayMessage>(msg => msg.Content == "Test Data"));
         }
     }
