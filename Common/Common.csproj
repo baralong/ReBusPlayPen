@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="IO\IConsole.cs" />
+    <Compile Include="IO\MyConsole.cs" />
     <Compile Include="Messages\OneWayMessage.cs" />
     <Compile Include="Messages\RequestMessage.cs" />
     <Compile Include="Messages\ResponseMessage.cs" />
