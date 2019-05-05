@@ -1,4 +1,5 @@
-﻿using Common.Messages;
+﻿using Common.IO;
+using Common.Messages;
 using Rebus;
 using Rebus.Bus;
 using Serilog;
@@ -11,17 +12,19 @@ namespace Api.Commands
     {
         static readonly ILogger Logger = Log.ForContext<RequestResponseCommand>();
         private readonly IBus bus;
+        private readonly IConsole console;
 
-        public RequestResponseCommand(IBus bus)
+        public RequestResponseCommand(IBus bus, IConsole console)
         {
             this.bus = bus;
+            this.console = console;
         }
         public string Description => "Request a response";
 
         public async Task ExecuteAsync()
         {
-            Console.WriteLine("Enter the content of the message to send:");
-            var content = Console.ReadLine();
+            console.WriteLine("Enter the content of the message to send:");
+            var content = console.ReadLine();
             var request = new RequestMessage { Content = content };
             Logger.Debug("Sending {@request}", request);
             var response = await bus.SendRequest<ResponseMessage>(request);

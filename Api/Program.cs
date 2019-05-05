@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Common;
+using Common.IO;
 using Common.Messages;
 using Rebus.Config;
 using Rebus.Routing.TypeBased;
@@ -34,6 +35,7 @@ namespace Api
 
             builder.RegisterHandler<LogSagaState>();
 
+            builder.RegisterType<MyConsole>().AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                         .Where(t => t.IsAssignableTo<IUserCommand>())
                         .AsImplementedInterfaces();
