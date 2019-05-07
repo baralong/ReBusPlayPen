@@ -59,7 +59,11 @@ namespace Api
                     var key = char.ToLower(Console.ReadKey().KeyChar);
                     Console.WriteLine();
 
-                    if (key == 'q') return;
+                    if (key == 'q')
+                    {
+                        return;
+                    }
+
                     if (commands.TryGetValue(key, out IUserCommand cmd))
                     {
                         cmd.ExecuteAsync().Wait();
